@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ topic.title }} — PromptVault{% endblock %}
+{% block meta_desc %}{{ topic.description }}{% endblock %}
+
+{% block content %}
+<section class="topic-hero">
+  <div class="topic-meta">
+    <a href="/category/{{ topic.category }}" class="topic-cat">{{ topic.category }}</a>
+    {% if topic.badge %}<span class="card-badge">{{ topic.badge }}</span>{% endif %}
+  </div>
+  <h1 class="topic-title">{{ topic.title }}</h1>
+  <p class="topic-desc">{{ topic.description }}</p>
+
+  <!-- ── ADSTERRA STICKY/INTERSTITIAL — PASTE HERE ── -->
+  <div class="ad-slot ad-topic-top" id="adsterra-topic">
+    <!-- ADSTERRA_TOPIC_AD_START -->
+
+    <!-- ADSTERRA_TOPIC_AD_END -->
+  </div>
+
+  <div class="download-box">
+    <div class="dl-info">
+      <span class="dl-icon">📄</span>
+      <div>
+        <strong>{{ topic.title }}</strong>
+        <span>PDF Document · Free Download</span>
+      </div>
+    </div>
+    <a href="/pdf/{{ topic.pdf }}" class="dl-btn" target="_blank" download>
+      Download Free PDF ↓
+    </a>
+  </div>
+</section>
+
+<!-- ── ADSTERRA IN-ARTICLE — PASTE HERE ── -->
+<div class="ad-slot ad-inarticle" id="adsterra-inarticle">
+  <!-- ADSTERRA_INARTICLE_START -->
+
+  <!-- ADSTERRA_INARTICLE_END -->
+</div>
+
+<!-- ── MORE TOPICS ─────────────────────────────────────── -->
+<section class="more-section">
+  <h3 class="more-title">More from PromptVault</h3>
+  <div class="grid grid-small">
+    {% for t in topics if t.slug != topic.slug %}
+    <a href="/topic/{{ t.slug }}" class="card">
+      <div class="card-top">
+        <span class="card-cat">{{ t.category }}</span>
+        {% if t.badge %}<span class="card-badge">{{ t.badge }}</span>{% endif %}
+      </div>
+      <h2 class="card-title">{{ t.title }}</h2>
+      <p class="card-desc">{{ t.description }}</p>
+      <div class="card-footer">
+        <span class="card-dl">↓ Free PDF</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

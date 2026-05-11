@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% set active_cat = active_cat if active_cat is defined else '' %}
+
+{% block content %}
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-tag">✦ Updated weekly</div>
+  <h1>Premium Prompts &amp;<br><em>Market Intelligence</em></h1>
+  <p class="hero-sub">Free PDF downloads covering AI prompts, trading strategies, and growth playbooks used by professionals.</p>
+  <div class="hero-cats">
+    <a href="/" class="cat-pill {% if not active_cat %}active{% endif %}">All Topics</a>
+    {% for cat in categories %}
+    <a href="/category/{{ cat }}" class="cat-pill {% if active_cat == cat %}active{% endif %}">{{ cat }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ── ADSTERRA IN-FEED — PASTE NATIVE/IN-ARTICLE AD HERE ── -->
+<div class="ad-slot ad-infeed" id="adsterra-infeed">
+  <!-- ADSTERRA_INFEED_START -->
+
+  <!-- ADSTERRA_INFEED_END -->
+</div>
+
+<!-- ── GRID ──────────────────────────────────────────────── -->
+<section class="grid-section">
+  <div class="grid">
+    {% for topic in topics %}
+    <a href="/topic/{{ topic.slug }}" class="card">
+      <div class="card-top">
+        <span class="card-cat">{{ topic.category }}</span>
+        {% if topic.badge %}
+        <span class="card-badge">{{ topic.badge }}</span>
+        {% endif %}
+      </div>
+      <h2 class="card-title">{{ topic.title }}</h2>
+      <p class="card-desc">{{ topic.description }}</p>
+      <div class="card-footer">
+        <span class="card-dl">↓ Free PDF</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
